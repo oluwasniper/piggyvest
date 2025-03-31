@@ -23,7 +23,9 @@ class _HomePageState extends State<HomePage> {
         child: const Icon(Icons.add),
       ),
       bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: Colors.grey[900],
+        useLegacyColorScheme: false,
+        type: BottomNavigationBarType.fixed,
+        backgroundColor: Colors.black,
         currentIndex: _currentIndex,
         selectedItemColor: const Color(0xff0E61D7),
         unselectedItemColor: Colors.grey,
@@ -34,15 +36,23 @@ class _HomePageState extends State<HomePage> {
         },
         items: const [
           BottomNavigationBarItem(
-            icon: Icon(Icons.home),
+            icon: ImageIcon(AssetImage('assets/images/home.png')),
             label: 'Home',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.savings),
+            icon: ImageIcon(AssetImage('assets/images/savings.png')),
             label: 'Savings',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.person),
+            icon: ImageIcon(AssetImage('assets/images/import.png')),
+            label: 'Invest',
+          ),
+          BottomNavigationBarItem(
+            icon: ImageIcon(AssetImage('assets/images/apps.png')),
+            label: 'Apps',
+          ),
+          BottomNavigationBarItem(
+            icon: ImageIcon(AssetImage('assets/images/you.png')),
             label: 'Profile',
           ),
         ],
@@ -54,9 +64,11 @@ class _HomePageState extends State<HomePage> {
           children: [
             const SizedBox(height: 50),
             _buildHeader(context),
-            const SizedBox(height: 20),
+            const SizedBox(height: 30),
             _buildTotalSavingsCard(context),
-            const SizedBox(height: 70),
+            const SizedBox(height: 30),
+            _buildMoverAsset(context),
+            const SizedBox(height: 50),
             _buildSaverOfTheMonthCard(context),
             const SizedBox(height: 20),
             _buildToDoList(context),
@@ -68,6 +80,8 @@ class _HomePageState extends State<HomePage> {
             _buildMyPocketCard(context),
             const SizedBox(height: 30),
             _buildMeetaSaverCard(context),
+            const SizedBox(height: 20),
+            _buildQuickOption(context),
           ],
         ),
       ),
@@ -225,26 +239,34 @@ class _HomePageState extends State<HomePage> {
             bottom: 15,
             left: 80,
             child: Container(
-              width: 164,
+              width: 204,
               height: 66,
               decoration: BoxDecoration(
-                color: const Color(0xff0E61D7),
+                color: Color(0xff0E61D7),
                 borderRadius: BorderRadius.circular(10),
               ),
               child: Padding(
                 padding: const EdgeInsets.all(9.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: const [
-                    Text(
-                      'DAVIO',
-                      style: TextStyle(fontSize: 17, color: Colors.white),
-                    ),
-                    Text(
-                      'WHITE',
-                      style: TextStyle(fontSize: 17, color: Colors.white),
-                    ),
-                  ],
+                child: SafeArea(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: const [
+                      Text(
+                        'DAVIO',
+                        style: TextStyle(
+                            fontSize: 17,
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold),
+                      ),
+                      Text(
+                        'WHITE',
+                        style: TextStyle(
+                            fontSize: 17,
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),
@@ -460,40 +482,281 @@ Widget _buildMyPocketCard(BuildContext context) {
 }
 
 Widget _buildMeetaSaverCard(BuildContext context) {
-  return Column(
-    mainAxisAlignment: MainAxisAlignment.start,
-    crossAxisAlignment: CrossAxisAlignment.start,
-    children: [
-      Text(
-        '#MEETAPIGGYVESTSAVER: SIMI',
-        style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-              color: Colors.white,
-              fontSize: 17,
-            ),
-      ),
-      const SizedBox(height: 10),
-      Container(
-        width: double.infinity,
-        height: 271,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10),
+  return Padding(
+    padding: const EdgeInsets.all(16.0),
+    child: Column(
+      mainAxisAlignment: MainAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          '#MEETAPIGGYVESTSAVER: SIMI',
+          style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                color: Colors.white,
+                fontSize: 17,
+              ),
         ),
-        child: Image.asset('assets/images/simi.png', height: 271),
-      ),
-    ],
+        const SizedBox(height: 10),
+        Container(
+          width: double.infinity,
+          height: 271,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10),
+          ),
+          child: Image.asset('assets/images/simi.png', height: 271),
+        ),
+      ],
+    ),
   );
 }
 
-Widget _QuickOption(BuildContext context) {
-  return Column(
-    children: [
-      Text(
-        'QUICK OPTIONS',
-        style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-              color: Colors.white,
-              fontSize: 17,
+Widget _buildQuickOption(BuildContext context) {
+  return Padding(
+    padding: const EdgeInsets.all(16.0),
+    child: Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          'QUICK OPTIONS',
+          style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                color: Colors.white,
+                fontSize: 17,
+              ),
+        ),
+        const SizedBox(height: 10),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            GestureDetector(
+              onTap: () {},
+              child: Container(
+                width: 151,
+                height: 210,
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    color: const Color(0xff262729)),
+                child: Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const SizedBox(height: 10),
+                      Image.asset(
+                        'assets/images/arrow.png',
+                        width: 17,
+                        height: 17,
+                      ),
+                      const SizedBox(height: 10),
+                      Flexible(
+                        child: Text(
+                          'My W.A.E.C Result',
+                          style: const TextStyle(
+                              color: Color(0xffEEA04D),
+                              fontWeight: FontWeight.bold),
+                          overflow: TextOverflow.ellipsis,
+                          maxLines: 2,
+                        ),
+                      ),
+                      const SizedBox(height: 10),
+                      Flexible(
+                        child: Text(
+                          'Piggyvest W.A.E.C',
+                          style: const TextStyle(color: Colors.white),
+                          overflow: TextOverflow.ellipsis,
+                          maxLines: 2,
+                        ),
+                      ),
+                      const SizedBox(height: 20),
+                      Flexible(
+                        child: Text(
+                          'View Result',
+                          style: const TextStyle(color: Color(0xffEEA04D)),
+                          overflow: TextOverflow.ellipsis,
+                          maxLines: 1,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
             ),
-      ),
-    ],
+            const SizedBox(width: 20),
+            GestureDetector(
+              onTap: () {},
+              child: Container(
+                width: 151,
+                height: 210,
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    color: const Color(0xff262729)),
+                child: Padding(
+                  padding: const EdgeInsets.all(16),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      const SizedBox(height: 10),
+                      Image.asset(
+                        'assets/images/percent.png',
+                        width: 17,
+                        height: 17,
+                      ),
+                      const SizedBox(height: 10),
+                      Flexible(
+                        child: Text(
+                          'Today\'s Rates',
+                          style: const TextStyle(
+                              color: Colors.white, fontWeight: FontWeight.bold),
+                          overflow: TextOverflow.ellipsis,
+                          maxLines: 1,
+                        ),
+                      ),
+                      const SizedBox(height: 20),
+                      Flexible(
+                        child: Text(
+                          'Check out Today\'s rates across all saving features on Piggyvest',
+                          style: const TextStyle(color: Colors.white),
+                          overflow: TextOverflow.visible,
+                          maxLines: 3,
+                        ),
+                      ),
+                      const SizedBox(height: 40),
+                      Flexible(
+                        child: Text(
+                          'See Rates',
+                          style: const TextStyle(color: Colors.white),
+                          overflow: TextOverflow.ellipsis,
+                          maxLines: 1,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+        const SizedBox(height: 16),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            GestureDetector(
+              onTap: () {},
+              child: Container(
+                width: 151,
+                height: 210,
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    color: const Color(0xff262729)),
+                child: Padding(
+                  padding: const EdgeInsets.all(16),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      const SizedBox(height: 10),
+                      Image.asset(
+                        'assets/images/money.png',
+                        width: 17,
+                        height: 17,
+                      ),
+                      const SizedBox(height: 10),
+                      Flexible(
+                        child: Text(
+                          'Flex Naira',
+                          style: const TextStyle(
+                              color: Color(0xffE73D96),
+                              fontWeight: FontWeight.bold),
+                          overflow: TextOverflow.ellipsis,
+                          maxLines: 1,
+                        ),
+                      ),
+                      const SizedBox(height: 20),
+                      Flexible(
+                        child: Text(
+                          'Flexible savings for emergencies. Free transfers, withdrawals etc. 8% p.a',
+                          style: const TextStyle(color: Colors.white),
+                          overflow: TextOverflow.ellipsis,
+                          maxLines: 3,
+                        ),
+                      ),
+                      const SizedBox(height: 10),
+                      Flexible(
+                        child: Text(
+                          'View Flex',
+                          style: const TextStyle(color: Color(0xffE73D96)),
+                          overflow: TextOverflow.ellipsis,
+                          maxLines: 1,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+            const SizedBox(width: 20),
+            GestureDetector(
+              onTap: () {},
+              child: Container(
+                width: 151,
+                height: 210,
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    color: const Color(0xff262729)),
+                child: Padding(
+                  padding: const EdgeInsets.all(16),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      const SizedBox(height: 10),
+                      Image.asset(
+                        'assets/images/dollar.png',
+                        width: 17,
+                        height: 17,
+                      ),
+                      const SizedBox(height: 10),
+                      Flexible(
+                        child: Text(
+                          'Flex Dollar',
+                          style: const TextStyle(
+                              color: Colors.white, fontWeight: FontWeight.bold),
+                          overflow: TextOverflow.ellipsis,
+                          maxLines: 1,
+                        ),
+                      ),
+                      const SizedBox(height: 20),
+                      Flexible(
+                        child: Text(
+                          'Save & grow your wealth in dollars. Up to 7% p.a in dollars',
+                          style: const TextStyle(color: Colors.white),
+                          overflow: TextOverflow.ellipsis,
+                          maxLines: 3,
+                        ),
+                      ),
+                      const SizedBox(height: 10),
+                      Flexible(
+                        child: Text(
+                          'Open',
+                          style: const TextStyle(color: Colors.white),
+                          overflow: TextOverflow.ellipsis,
+                          maxLines: 1,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ],
+    ),
   );
+}
+
+Widget _buildMoverAsset(BuildContext context) {
+  return Image.asset('assets/images/mover.png', width: 17, height: 17);
 }
